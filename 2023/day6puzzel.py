@@ -26,4 +26,4 @@ while speed < time:
     if distance > record:
         wins += 1
     speed += 1
-print(f"Puzzle 2 solution: {wins}")
+print(f"Puzzle 1 solution: {wins}")
