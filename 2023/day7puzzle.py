@@ -15,7 +15,7 @@ def puzzle(hand_map, puzzle2=False):
     full_house_list = []
     three_of_a_kind_list = []
     for item in lists_by_frequency[3]:
-        if is_full_house(item[0]):
+        if is_full_house(item[0], puzzle2):
             full_house_list.append(item)
         else:
             three_of_a_kind_list.append(item)
@@ -79,9 +79,12 @@ def custom_sort_key(hand, puzzle2=False):
         order = {'A': 0, 'K': 1, 'Q': 2, 'J': 3, 'T': 4, '9': 5, '8': 6, '7': 7, '6': 8, '5': 9, '4': 10, '3': 11, '2': 12}
     return [order.get(char, 13) for char in hand[0]]
 
-def is_full_house(s):
+def is_full_house(s, puzzle2=False):
     freqs = Counter(s)
-    return sorted(freqs.values()) == [2, 3]
+    if puzzle2 and 'J' in freqs.keys():
+       return sorted(freqs.values()) == [1, 2, 2]
+    else:
+        return sorted(freqs.values()) == [2, 3]
 
 def is_two_pairs(s):
     freqs = Counter(s)
