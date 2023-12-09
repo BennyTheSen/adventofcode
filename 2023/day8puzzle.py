@@ -64,5 +64,5 @@ if __name__ == "__main__":
     with open("2023/day8input.txt") as f:
         input = f.readlines()
         directions, mappings = parse_input(input)
-        #puzzle1(directions, mappings)
+        puzzle1(directions, mappings)
         puzzle2(directions, mappings)
