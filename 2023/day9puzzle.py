@@ -1,9 +1,14 @@
 from itertools import pairwise
 
-def parse_input(input):
+def parse_input(input, puzzle2=False):
     sequences = []
     for line in input:
-        sequences.append([eval(i) for i in line.strip().split()])
+        if puzzle2:
+            sequence = [eval(i) for i in line.strip().split()]
+            sequence.reverse()
+            sequences.append(sequence)
+        else:    
+            sequences.append([eval(i) for i in line.strip().split()])
     return sequences
 
 def puzzle1(sequences):
@@ -22,16 +27,12 @@ def puzzle1(sequences):
             steps[i].append(steps[i-1][-1]+steps[i][-1])
             i += 1
         sol += steps[-1][-1]
-    print(f"Puzzle 1 solution: {sol}")
-
-def puzzle2(directions, mappings):
-
-
-    print(f"Puzzle 2 solution: ")
+    return sol
 
 if __name__ == "__main__":
     with open("2023/day9input.txt") as f:
         input = f.readlines()
         sequences = parse_input(input)
-        puzzle1(sequences)
-        #puzzle2(directions, mappings)
+        sequences2 = parse_input(input, True)
+        print(f"Puzzle 1 solution: {puzzle1(sequences)}")
+        print(f"Puzzle 2 solution: {puzzle1(sequences2)}")
